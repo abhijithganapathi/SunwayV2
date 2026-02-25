@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     siteName: "Sunway Solar Systems",
     images: [
       {
-        url: "/og.jpg", // 🔁 add this file inside /public
+        url: `${siteUrl}/images/og.jpg`, // 🔁 add this file inside /public
         width: 1200,
         height: 630,
         alt: "Sunway Solar Systems",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     title: "Sunway Solar Systems | Rooftop Solar in Kerala",
     description:
       "Quality-first rooftop solar installations with clean finishing and long-term performance focus.",
-    images: ["/og.jpg"],
+    images: [`${siteUrl}/images/og.jpg`],
   },
 
   robots: {
