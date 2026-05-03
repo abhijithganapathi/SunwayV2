@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/content/site";
+import { localPages } from "@/content/localPages";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = `https://${site.domain}`;
@@ -12,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/projects", priority: 0.7 },
     { path: "/about", priority: 0.6 },
     { path: "/contact", priority: 0.9 },
+    ...localPages.map((page) => ({ path: `/${page.slug}`, priority: 0.85 })),
   ];
 
   return routes.map((r) => ({

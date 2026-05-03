@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function ProjectCard({
   project,
 }: {
@@ -19,11 +21,12 @@ export default function ProjectCard({
     >
       {/* Image */}
       <div className="relative aspect-[4/3] overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center transition duration-700 group-hover:scale-105"
-          style={{ backgroundImage: `url(${project.image})` }}
-          role="img"
-          aria-label={project.title}
+        <Image
+          src={project.image}
+          alt={`${project.title} in ${project.location}`}
+          fill
+          sizes="(min-width: 768px) 33vw, 100vw"
+          className="object-cover transition duration-700 group-hover:scale-105"
         />
 
         {/* Subtle dark gradient for readability */}

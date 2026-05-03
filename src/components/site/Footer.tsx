@@ -1,5 +1,6 @@
 import Container from "./Container";
 import { site } from "@/content/site";
+import Link from "next/link";
 
 export default function Footer() {
     return (
@@ -17,7 +18,7 @@ export default function Footer() {
                         <div className="text-sm font-semibold">Contact</div>
                         <div className="mt-2 flex flex-col space-y-1 text-sm text-[rgb(var(--muted))]">
                             <a
-                                href="https://www.google.com/maps?um=1&ie=UTF-8&fb=1&gl=in&sa=X&geocode=KT03JZYdCwY7MWHHvhALLh1H&daddr=No.+670,+Maruthayath+Building,+Lower+Karickom+-+Ayppallor+Rd,+Kottarakkara,+Melila,+Kerala+691531"
+                                href={site.mapsUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="hover:text-black transition underline-offset-4 underline"
@@ -37,24 +38,33 @@ export default function Footer() {
                     <div>
                         <div className="text-sm font-semibold">Quick links</div>
                         <div className="mt-2 space-y-1 text-sm">
-                            <a className="block text-[rgb(var(--muted))] hover:text-[rgb(var(--text))]" href="/residential">
+                            <Link className="block text-[rgb(var(--muted))] hover:text-[rgb(var(--text))]" href="/residential">
                                 Residential
-                            </a>
-                            <a className="block text-[rgb(var(--muted))] hover:text-[rgb(var(--text))]" href="/commercial">
+                            </Link>
+                            <Link className="block text-[rgb(var(--muted))] hover:text-[rgb(var(--text))]" href="/commercial">
                                 Commercial
-                            </a>
-                            <a className="block text-[rgb(var(--muted))] hover:text-[rgb(var(--text))]" href="/projects">
+                            </Link>
+                            <Link className="block text-[rgb(var(--muted))] hover:text-[rgb(var(--text))]" href="/projects">
                                 Projects
-                            </a>
-                            <a className="block text-[rgb(var(--muted))] hover:text-[rgb(var(--text))]" href="/contact">
+                            </Link>
+                            <Link className="block text-[rgb(var(--muted))] hover:text-[rgb(var(--text))]" href="/contact">
                                 Get Quote
-                            </a>
+                            </Link>
+                            <Link className="block text-[rgb(var(--muted))] hover:text-[rgb(var(--text))]" href="/solar-panel-installation-kottarakkara">
+                                Solar in Kottarakkara
+                            </Link>
+                            <Link className="block text-[rgb(var(--muted))] hover:text-[rgb(var(--text))]" href="/rooftop-solar-kollam">
+                                Rooftop Solar Kollam
+                            </Link>
+                            <Link className="block text-[rgb(var(--muted))] hover:text-[rgb(var(--text))]" href="/pm-surya-ghar-subsidy-kerala">
+                                Solar Subsidy Kerala
+                            </Link>
                         </div>
                     </div>
                 </div>
 
                 <div className="mt-10 text-xs text-[rgb(var(--muted))]">
-                    © {new Date().getFullYear()} {site.name}. All rights reserved.
+                    &copy; {new Date().getFullYear()} {site.name}. All rights reserved.
                 </div>
             </Container>
         </footer>

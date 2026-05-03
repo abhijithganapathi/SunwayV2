@@ -29,6 +29,16 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+dev-server*.log
+/*.png
+/*metrics.json
+/audit-metrics.json
+/design4-final-all-viewports.json
+prototype-current.png
+prototype-revised.png
+prototype-design-2.png
+.chrome-profile/
+/src/app/(marketing)/prototype/
 
 # env files (can opt-in for committing if needed)
 .env*

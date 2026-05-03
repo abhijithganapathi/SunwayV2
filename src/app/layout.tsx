@@ -3,7 +3,7 @@ import Header from "@/components/site/Header";
 import Footer from "@/components/site/Footer";
 import type { Metadata } from "next";
 
-const siteUrl = "https://sunwaysolarsystems.in"; // 🔁 change to your real domain when live
+const siteUrl = "https://sunwaysolarsystems.in";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -16,9 +16,16 @@ export const metadata: Metadata = {
   description:
     "Rooftop solar installations in Kerala with quality-first finishing, practical system sizing, and reliable after-sales support. KSEB approved guidance.",
 
+  alternates: {
+    canonical: siteUrl,
+  },
+
   keywords: [
     "solar installation Kerala",
     "rooftop solar Kerala",
+    "solar panel installation Kerala",
+    "solar panel installation Kottarakkara",
+    "solar company Kottarakkara",
     "KSEB approved solar",
     "residential solar Kerala",
     "commercial solar Kerala",
@@ -34,7 +41,7 @@ export const metadata: Metadata = {
     siteName: "Sunway Solar Systems",
     images: [
       {
-        url: `${siteUrl}/images/og.jpg`, // 🔁 add this file inside /public
+        url: `${siteUrl}/images/og.jpg`,
         width: 1200,
         height: 630,
         alt: "Sunway Solar Systems",
