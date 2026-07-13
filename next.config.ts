@@ -3,17 +3,6 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   poweredByHeader: false,
 
-  async redirects() {
-    return [
-      {
-        source: "/:path*",
-        has: [{ type: "host", value: "www\\.sunwaysolarsystems\\.in" }],
-        destination: "https://sunwaysolarsystems.in/:path*",
-        permanent: true,
-      },
-    ];
-  },
-
   async headers() {
     return [
       {
