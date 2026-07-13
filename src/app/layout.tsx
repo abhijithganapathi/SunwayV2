@@ -1,6 +1,7 @@
 import "./globals.css";
 import Header from "@/components/site/Header";
 import Footer from "@/components/site/Footer";
+import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import type { Metadata } from "next";
 
 const siteUrl = "https://sunwaysolarsystems.in";
@@ -71,6 +72,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <GoogleAnalytics />
         <Header />
         {children}
         <Footer />

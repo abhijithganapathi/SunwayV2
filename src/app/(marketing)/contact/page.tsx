@@ -1,9 +1,16 @@
+import type { Metadata } from "next";
 import Container from "@/components/site/Container";
 import Section from "@/components/site/Section";
 import LeadForm from "@/components/site/LeadForm";
 import Button from "@/components/site/Button";
 import { site } from "@/content/site";
 import { MapPin, Phone, Mail, MessageCircle } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Get a Rooftop Solar Estimate in Kerala",
+  description: "Request a practical rooftop solar estimate from Sunway Solar Systems. Share your location and bill range for next steps.",
+  alternates: { canonical: "/contact" },
+};
 
 export default function ContactPage() {
     return (

@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 
+export const runtime = "nodejs";
+
 const MAX_FIELD_LENGTH = 160;
 const PHONE_PATTERN = /^[+\d][\d\s()+-]{6,24}$/;
 

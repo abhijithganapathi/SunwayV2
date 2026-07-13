@@ -4,7 +4,8 @@ import { localPages } from "@/content/localPages";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = `https://${site.domain}`;
-  const now = new Date();
+  // Keep sitemap dates stable. Update this when public site content changes.
+  const lastContentUpdate = new Date("2026-05-03T15:15:35.905Z");
 
   const routes: Array<{ path: string; priority: number }> = [
     { path: "/", priority: 1 },
@@ -18,7 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return routes.map((r) => ({
     url: `${base}${r.path}`,
-    lastModified: now,
+    lastModified: lastContentUpdate,
     changeFrequency: "weekly",
     priority: r.priority,
   }));

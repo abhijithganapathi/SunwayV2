@@ -1,7 +1,14 @@
+import type { Metadata } from "next";
 import Container from "@/components/site/Container";
 import Section from "@/components/site/Section";
 import Button from "@/components/site/Button";
 import { Sparkles, MessageCircle, ShieldCheck } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "About Our Kerala Rooftop Solar Team",
+  description: "Learn about Sunway Solar Systems, a quality-focused rooftop solar team providing practical recommendations, safe installation, and after-sales support in Kerala.",
+  alternates: { canonical: "/about" },
+};
 
 export default function AboutPage() {
   const values = [
