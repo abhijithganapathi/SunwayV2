@@ -1,5 +1,6 @@
 "use client";
 import { useId, useState } from "react";
+import { trackEvent } from "@/components/analytics/GoogleAnalytics";
 
 export default function LeadForm() {
   const formId = useId();
@@ -21,6 +22,7 @@ export default function LeadForm() {
       });
 
       if (!res.ok) throw new Error();
+      trackEvent("estimate_form_submit", { form_id: "solar_estimate" });
       setStatus("success");
       formEl.reset();
     } catch {

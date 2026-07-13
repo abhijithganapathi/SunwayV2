@@ -1,7 +1,14 @@
+import type { Metadata } from "next";
 import Container from "@/components/site/Container";
 import Section from "@/components/site/Section";
 import Button from "@/components/site/Button";
 import { BarChart3, ClipboardList, Wrench } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Commercial & Industrial Rooftop Solar in Kerala",
+  description: "Commercial and industrial rooftop solar systems in Kerala, designed around your load profile, roof constraints, safe installation, and long-term support.",
+  alternates: { canonical: "/commercial" },
+};
 
 export default function CommercialPage() {
     const steps = [

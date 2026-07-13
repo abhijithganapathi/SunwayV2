@@ -1,7 +1,14 @@
+import type { Metadata } from "next";
 import Container from "@/components/site/Container";
 import Section from "@/components/site/Section";
 import Button from "@/components/site/Button";
 import { Home, LayoutDashboard, ShieldCheck } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Home Rooftop Solar Installation in Kerala",
+  description: "Plan a practical home rooftop solar system in Kerala with site assessment, system sizing, installation, KSEB guidance, and after-sales support.",
+  alternates: { canonical: "/residential" },
+};
 
 export default function ResidentialPage() {
     const steps = [

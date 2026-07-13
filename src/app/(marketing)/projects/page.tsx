@@ -1,7 +1,14 @@
+import type { Metadata } from "next";
 import Container from "@/components/site/Container";
 import Section from "@/components/site/Section";
 import ProjectCard from "@/components/site/ProjectCard";
 import { projects } from "@/content/projects";
+
+export const metadata: Metadata = {
+  title: "Kerala Rooftop Solar Installation Projects",
+  description: "View recent residential and commercial rooftop solar installations by Sunway Solar Systems across Kerala.",
+  alternates: { canonical: "/projects" },
+};
 
 export default function ProjectsPage() {
   return (
