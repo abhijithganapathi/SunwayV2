@@ -5,7 +5,7 @@ import { getLocalPage, localPages } from "../src/content/localPages.ts";
 import { site } from "../src/content/site.ts";
 
 test("site domain is configured for the production canonical host", () => {
-  assert.equal(site.domain, "sunwaysolarsystems.in");
+  assert.equal(site.domain, "www.sunwaysolarsystems.in");
 });
 
 test("all local landing page slugs are unique, URL-safe, and resolvable", () => {

@@ -4,7 +4,7 @@ import Footer from "@/components/site/Footer";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import type { Metadata } from "next";
 
-const siteUrl = "https://sunwaysolarsystems.in";
+const siteUrl = "https://www.sunwaysolarsystems.in";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

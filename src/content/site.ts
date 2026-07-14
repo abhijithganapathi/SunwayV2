@@ -1,6 +1,6 @@
 export const site = {
   name: "Sunway Solar Systems",
-  domain: "sunwaysolarsystems.in",
+  domain: "www.sunwaysolarsystems.in",
   phoneDisplay: "+91 96330 21955",
   phoneE164: "+919633021955",
   whatsapp: "+918281297824",
