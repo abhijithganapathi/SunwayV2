@@ -5,6 +5,7 @@
   --bg: 250 250 249;        /* warm off-white */
   --card: 255 255 255;      /* white */
   --text: 17 24 39;         /* slate-900 */
+  --ink: 17 24 39;          /* legacy alias used by page components */
   --muted: 107 114 128;     /* gray-500 */
   --border: 231 229 228;    /* stone-200 */
 

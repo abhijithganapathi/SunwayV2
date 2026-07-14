@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sunway Solar Systems Website
 
-## Getting Started
+Marketing website for Sunway Solar Systems, a rooftop solar installation business in Kerala. Built with Next.js App Router, Tailwind CSS, and a small server-side lead forwarding API.
 
-First, run the development server:
+## Tech stack
+
+- Next.js 16
+- React 19
+- Tailwind CSS 4
+- TypeScript
+- Google Analytics 4, optional
+- Google Apps Script lead endpoint, configured through environment variables
+
+## Local development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open <http://localhost:3000>.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Required environment variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Create `.env.local` from `.env.example`:
 
-## Learn More
+```bash
+cp .env.example .env.local
+```
 
-To learn more about Next.js, take a look at the following resources:
+| Variable | Required | Purpose |
+| --- | --- | --- |
+| `GOOGLE_SCRIPT_URL` | Yes for lead form submissions | HTTPS Google Apps Script endpoint that receives lead payloads |
+| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | No | GA4 measurement ID for page/event tracking |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Keep production values only in Vercel/project environment variables. Do not commit real endpoint secrets.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Quality checks
 
-## Deploy on Vercel
+Run before pushing or deploying:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm test
+npm run lint
+npm run build
+npm audit --omit=dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Lead form behavior
+
+The `/api/lead` route:
+
+- accepts `name`, `phone`, `location`, `billRange`, and `customerType`
+- trims and length-limits submitted fields
+- validates phone format
+- requires `GOOGLE_SCRIPT_URL` to be a valid HTTPS URL
+- forwards valid submissions to the configured Apps Script endpoint
+- normalizes non-JSON successful upstream responses to `{ ok: true }`
+- times out upstream forwarding after 10 seconds
+
+## SEO/content notes
+
+- Canonical domain is configured as `https://sunwaysolarsystems.in`.
+- Sitemap is generated from primary routes plus entries in `src/content/localPages.ts`.
+- Local SEO landing pages are statically generated from `src/content/localPages.ts`.
+- Business, service, and FAQ schema are emitted as JSON-LD on relevant pages.
+
+## Deployment
+
+The project is suitable for Vercel deployment.
+
+1. Set environment variables in Vercel.
+2. Run the quality checks locally.
+3. Deploy from the `main` branch.
+4. After deployment, verify:
+   - homepage loads
+   - `/contact` lead form submits successfully
+   - phone and WhatsApp CTAs work on mobile
+   - `/sitemap.xml` and `/robots.txt` are accessible
+   - Open Graph image renders correctly when shared

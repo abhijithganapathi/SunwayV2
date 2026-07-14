@@ -1,21 +1,13 @@
 import { NextResponse } from "next/server";
+import {
+  buildLeadPayload,
+  isHttpsUrl,
+  parseLeadForwardResponse,
+} from "./leadPayload";
 
 export const runtime = "nodejs";
 
-const MAX_FIELD_LENGTH = 160;
-const PHONE_PATTERN = /^[+\d][\d\s()+-]{6,24}$/;
-
-function cleanField(value: unknown) {
-  return typeof value === "string" ? value.trim().slice(0, MAX_FIELD_LENGTH) : "";
-}
-
-function isHttpsUrl(value: string) {
-  try {
-    return new URL(value).protocol === "https:";
-  } catch {
-    return false;
-  }
-}
+const LEAD_FORWARD_TIMEOUT_MS = 10_000;
 
 export async function POST(req: Request) {
   try {
@@ -26,33 +18,29 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: false, error: "Configuration missing" }, { status: 500 });
     }
 
-    const payload = {
-      name: cleanField(body.name),
-      phone: cleanField(body.phone),
-      location: cleanField(body.location),
-      billRange: cleanField(body.billRange),
-      customerType: cleanField(body.customerType),
-    };
+    const lead = buildLeadPayload(body);
 
-    if (
-      !payload.name ||
-      !PHONE_PATTERN.test(payload.phone) ||
-      !payload.location ||
-      !payload.billRange ||
-      !payload.customerType
-    ) {
-      return NextResponse.json({ ok: false, error: "Invalid form details" }, { status: 400 });
+    if (!lead.ok) {
+      return NextResponse.json({ ok: false, error: lead.error }, { status: 400 });
     }
 
-    const res = await fetch(scriptUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-      cache: "no-store",
-    });
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), LEAD_FORWARD_TIMEOUT_MS);
 
-    const result = await res.json();
-    return NextResponse.json(result);
+    try {
+      const res = await fetch(scriptUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(lead.payload),
+        cache: "no-store",
+        signal: controller.signal,
+      });
+
+      const result = await parseLeadForwardResponse(res);
+      return NextResponse.json(result, { status: result.ok ? 200 : 502 });
+    } finally {
+      clearTimeout(timeout);
+    }
   } catch (err) {
     console.error("Form error:", err);
     return NextResponse.json({ ok: false }, { status: 500 });
